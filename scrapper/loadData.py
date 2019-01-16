@@ -33,8 +33,8 @@ class loadData:
 
     def get_all_metrics(self) -> list:
         """
-        TO DO
-        :return:
+        Gets all the metrics names in html
+        :return: string with the metrics
         """
         p = []
         symbol = "TEF"  # TEF by reference
@@ -47,18 +47,18 @@ class loadData:
 
     def fundamental_metric(self, soup, metric) -> str:
         """
-        TO DO
-        :param metric:
-        :return:
+        Given HTML find the value of given metric
+        :param metric: finantial metric we want to recover value
+        :return: string value of given metric
         """
         #TO DO: Try Catch excpections
         return soup.find(text=re.compile(metric+"*")).find_next(class_='Fz(s) Fw(500) Ta(end)').text
 
     def company_info(self, soup) -> list:
         """
-        TO DO
-        :param symbol:
-        :return:
+        Given HTML find the sector and industry of a company
+        :param soup: HTML
+        :return: List with Sector and Industry
         """
         #TO DO: Try Catch expections
         sector = soup.find(text="Sector").find_next().text
@@ -69,9 +69,9 @@ class loadData:
 
     def get_fundamental_data(self, df):
         """
-        TO DO
-        :param df:
-        :return:
+        Given a DF with index companies and metrics in columns fills metric values with scrapped html
+        :param df: Pandas empty dataframe with companies at index and metrics at columns
+        :return: Pandas Dataframe with values
         """
         #Iterate over companies
         for symbol in df.index:
@@ -89,8 +89,8 @@ class loadData:
 
     def createDF(self):
         """
-        TO DO
-        :return:
+        Creates empty Pandas DataFrame given companies and metrics from config
+        :return: Indexed empty Dataframe
         """
         #Reads conf with companies and columns and create indexed Dataframe
         df = pd.DataFrame(index= self.conf["companies"], columns= self.conf["comp_info"] + self.conf["metrics"])
