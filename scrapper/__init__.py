@@ -1,8 +1,9 @@
-from scrapper.loadData import loadData
+from scrapper.Fundamentals import Fundamentals
+from scrapper.Stocks import Stocks
 
 if __name__ == '__main__':
 
-    df = loadData()
-    print(df.createDF().head())
-
-    print(df.createDF().__doc__)
+    # df = Fundamentals()
+    # print(df.fundamentalDF().head())
+    dfStocks = Stocks()
+    print(dfStocks.stocksDF())
