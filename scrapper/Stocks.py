@@ -1,10 +1,8 @@
 from pandas_datareader import data as pdr
 import datetime
-import fix_yahoo_finance as yf
+#import fix_yahoo_finance as yf
 import pandas as pd
 import json
-
-yf.pdr_override()
 
 class Stocks:
 

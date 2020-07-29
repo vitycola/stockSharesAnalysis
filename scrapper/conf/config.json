@@ -4,7 +4,7 @@
                 "AMZN"],
 
   "comp_info": ["sector",
-                     "industry"],
+                "industry"],
 
   "metrics" : ["Market Cap (intraday)",
                "Enterprise Value",

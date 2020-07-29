@@ -27,7 +27,7 @@ class Fundamentals:
             url = ("https://finance.yahoo.com/quote/" + symbol.lower() + page_dict[page_type])
             soup = bs(requests.get(url).content, "html.parser")
         except Exception as e:
-            print(symbol, 'not found')
+            print(symbol, 'not found: ', e)
 
         return soup
 
@@ -51,8 +51,12 @@ class Fundamentals:
         :param metric: finantial metric we want to recover value
         :return: string value of given metric
         """
-        #TO DO: Try Catch excpections
-        return soup.find(text=re.compile(metric+"*")).find_next(class_='Fz(s) Fw(500) Ta(end)').text
+        fundMetric = ""
+        try:
+           fundMetric = soup.find(text=re.compile(metric + "*")).find_next(class_='Fz(s) Fw(500) Ta(end)').text
+        except Exception as e:
+            print('Metric ',metric, ' not found', e)
+        return fundMetric
 
     def _company_info(self, soup) -> list:
         """
@@ -60,9 +64,13 @@ class Fundamentals:
         :param soup: HTML
         :return: List with Sector and Industry
         """
-        #TO DO: Try Catch expections
-        sector = soup.find(text="Sector").find_next().text
-        industry = soup.find(text="Industry").find_next().text
+        sector = ""
+        industry = ""
+        try:
+            sector = soup.find(text="Sector(s)").find_next().text
+            industry = soup.find(text="Industry").find_next().text
+        except Exception as e:
+            print('Company Info not found: ', e)
         return [sector, industry]
 
     def _get_fundamental_data(self, df):
