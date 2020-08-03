@@ -1,8 +1,12 @@
-
 \.idea/
-
 \.DS_Store
-
 scrapper/__pycache__/
-
 scrapper/Quantitative Analysis Yahoo\.py
+dist/
+build/
+stockSharesAnalysis.egg-info
+__pycache__/*
+
+
+# Jupyter Notebook
+.ipynb_checkpoints
