@@ -1,5 +1,5 @@
 import pandas as pd
-from analysis.fundamentals import Fundamentals
+from pyStocks.fundamentals import Fundamentals
 
 class Utils():
 
