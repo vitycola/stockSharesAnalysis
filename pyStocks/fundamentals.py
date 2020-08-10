@@ -49,8 +49,14 @@ class Fundamentals():
     def getPayOutRatio(self):
         return self.share.info['payoutRatio']
 
+    def getTraillingRevenue(self):
+        return self.share.financials.loc['Total Revenue'][0]
+
     def getHistRevenue(self):
         return self.share.financials.loc['Total Revenue']
+
+    def getTraillingtNetIncome(self):
+        return self.share.financials.loc['Net Income'][0]
 
     def getHistNetIncome(self):
         return self.share.financials.loc['Net Income']
@@ -108,4 +114,15 @@ class Fundamentals():
 
     def getAnalystRecommendations(self, date) -> pd.DataFrame:
         return self.share.recommendations[date].groupby('To Grade').count()
+
+    def calcIncreasingRevenue(self, years = 3):
+        return self.getHistRevenue().sort_index(ascending=True).diff(years)[-1]
+
+    def calcIncreasingNetIncome(self, years = 3):
+        return self.getHistNetIncome().sort_index(ascending=True).diff(years)[-1]
+
+    def calcIncreasingFreeCashFlow(self, years = 3): #TODO
+        pass
+
+
 
